@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snore Episodes — AI-Powered Sleep & Snore Intelligence</title>
+    <meta name="description" content="Track snoring intensity, analyze audio waveforms, and discover lifestyle correlations with complete on-device privacy. Available on Android & iOS.">
+
+    <!-- Google Fonts: Inter (Body) & Outfit (Headings) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#0F172A',         // Deep slate blue (premium dark mode)
+                            surface: '#1E293B',    // Elevated card color
+                            border: '#334155',     // Subtle border color
+                            coral: '#FF4757',      // Your app's primary accent
+                            coralHover: '#E03E4D', 
+                            textMain: '#F8FAFC',   // Crisp white for headings
+                            textMuted: '#94A3B8'   // Slate gray for readable body text
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        heading: ['"Outfit"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace']
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.25)',
+                        'glow': '0 0 20px -5px rgba(255, 71, 87, 0.4)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0F172A;
+            color: #F8FAFC;
+        }
+
+        /* Custom scrollbar for a polished feel */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0F172A; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FF4757; }
+    </style>
+</head>
+<body class="min-h-screen selection:bg-brand-coral selection:text-white font-sans">
+
+    <!-- NAVIGATION BAR -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-brand-border bg-brand-bg/95 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- New Clean Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full bg-brand-surface border border-brand-border flex items-center justify-center transition-transform group-hover:scale-105 shadow-soft">
+                    <svg class="w-5 h-5 text-brand-coral" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </div>
+                <span class="text-xl font-heading font-extrabold tracking-tight text-brand-textMain">
+                    Snore Episodes
+                </span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-brand-textMuted">
+                <a href="#features" class="hover:text-white transition-colors">Features</a>
+                <a href="#interactive-demo" class="hover:text-white transition-colors">App Preview</a>
+                <a href="#privacy" class="hover:text-white transition-colors">Privacy</a>
+                <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="#download" class="hidden sm:inline-flex items-center px-6 py-2.5 rounded-full bg-brand-coral hover:bg-brand-coralHover text-white font-semibold text-sm shadow-glow transition-all transform hover:-translate-y-0.5">
+                    Download App
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-24 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Hero Text Content -->
+            <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-surface border border-brand-border text-xs font-semibold tracking-wide uppercase text-brand-coral">
+                    <span class="w-2 h-2 rounded-full bg-brand-coral animate-ping"></span>
+                    On-Device AI Sleep Engine
+                </div>
+
+                <h1 class="text-5xl md:text-6xl font-heading font-extrabold tracking-tight leading-[1.15] text-brand-textMain">
+                    Understand Your Sleep. <br>
+                    <span class="text-brand-coral">
+                        Master Your Rest.
+                    </span>
+                </h1>
+
+                <p class="text-lg text-brand-textMuted max-w-2xl leading-relaxed mx-auto lg:mx-0">
+                    Precision real-time audio analysis, instant waveform visualization, and personalized lifestyle tracking—all backed by 100% on-device local privacy.
+                </p>
+
+                <!-- Store Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                    <a href="#download" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white text-slate-900 hover:bg-slate-100 font-bold text-sm flex items-center justify-center gap-3 shadow-soft transition-all transform hover:-translate-y-1">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M17.525 9.17a1.11 1.11 0 0 0-1.127-.883H7.6a1.11 1.11 0 0 0-1.126.883L5 16h14l-1.475-6.83zM12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14h-2v-2h2zm0-4h-2V7h2z"/></svg>
+                        <div class="text-left">
+                            <div class="text-[10px] uppercase font-bold text-slate-500 leading-none">Get it on</div>
+                            <div class="text-base font-extrabold text-slate-900 leading-tight">Google Play</div>
+                        </div>
+                    </a>
+
+                    <a href="#download" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-brand-surface border border-brand-border font-bold text-sm flex items-center justify-center gap-3 text-white hover:bg-slate-800 transition-all transform hover:-translate-y-1">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.85c.66-.8 1.11-1.92.99-3.04-.96.04-2.12.64-2.8 1.44-.61.71-1.14 1.86-1 2.98 1.08.08 2.16-.57 2.81-1.38z"/></svg>
+                        <div class="text-left">
+                            <div class="text-[10px] uppercase font-bold text-brand-textMuted leading-none">Download on the</div>
+                            <div class="text-base font-extrabold leading-tight">App Store</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Phone Frame Mockup -->
+            <div class="lg:col-span-5 flex justify-center mt-10 lg:mt-0">
+                <div class="relative w-full max-w-[320px] p-4 rounded-[40px] bg-brand-surface border border-brand-border shadow-soft">
+                    
+                    <div class="w-full bg-[#0C1013] rounded-[28px] overflow-hidden p-5 space-y-6 font-mono text-xs border border-brand-border">
+                        <div class="flex items-center justify-between pt-2">
+                            <span class="font-bold text-white text-sm font-sans tracking-wide">Snore Engine</span>
+                            <span class="px-2 py-0.5 rounded text-[#2ED573] text-[10px] font-bold uppercase">Ready</span>
+                        </div>
+
+                        <div class="py-6 flex flex-col items-center justify-center space-y-4">
+                            <div class="relative flex items-center justify-center w-20 h-20 rounded-full bg-[#111619] border border-[#FF4757]/30 shadow-glow">
+                                <div class="absolute inset-0 rounded-full border border-[#FF4757] animate-ping opacity-20"></div>
+                                <svg class="w-8 h-8 text-[#FF4757]" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/>
+                                </svg>
+                            </div>
+                            <span class="text-white font-sans font-bold text-xs tracking-wider">RECORDING ACTIVE</span>
+                        </div>
+
+                        <div class="bg-[#111619] p-3 rounded-2xl border border-brand-border space-y-2">
+                            <div class="flex justify-between text-[10px] text-gray-400 font-sans">
+                                <span>Realtime PCM Stream</span>
+                                <span class="text-[#FF4757] font-bold">16,000 Hz</span>
+                            </div>
+                            <canvas id="heroWaveformCanvas" width="240" height="40" class="w-full h-10"></canvas>
+                        </div>
+
+                        <button class="w-full py-3.5 rounded-xl bg-[#FF4757] text-white font-sans font-bold text-sm shadow-glow">
+                            STOP & ANALYZE
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- METRICS DISPLAY BANNER -->
+    <section class="border-y border-brand-border bg-brand-surface py-12">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div class="space-y-2">
+                <div class="text-4xl font-heading font-extrabold text-brand-textMain">99.4<span class="text-brand-coral">%</span></div>
+                <div class="text-sm font-medium text-brand-textMuted uppercase tracking-wide">Detection Accuracy</div>
+            </div>
+            <div class="space-y-2">
+                <div class="text-4xl font-heading font-extrabold text-brand-textMain">0 <span class="text-blue-400">Cloud</span></div>
+                <div class="text-sm font-medium text-brand-textMuted uppercase tracking-wide">Private Local Storage</div>
+            </div>
+            <div class="space-y-2">
+                <div class="text-4xl font-heading font-extrabold text-brand-textMain">12 <span class="text-amber-400">Hrs</span></div>
+                <div class="text-sm font-medium text-brand-textMuted uppercase tracking-wide">Max Session Limit</div>
+            </div>
+            <div class="space-y-2">
+                <div class="text-4xl font-heading font-extrabold text-brand-textMain">100<span class="text-[#2ED573]">%</span></div>
+                <div class="text-sm font-medium text-brand-textMuted uppercase tracking-wide">Custom Factors</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE FEATURES SECTION -->
+    <section id="features" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto space-y-16">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-brand-textMain">
+                    Engineered for Deep Sleep Clarity
+                </h2>
+                <p class="text-brand-textMuted text-lg">
+                    Every feature in Snore Episodes is crafted to transform raw sleep audio into actionable health intelligence.
+                </p>
+            </div>
+
+            <!-- Grid of Cards -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-brand-surface border border-brand-border p-8 rounded-3xl space-y-5 shadow-soft">
+                    <div class="w-12 h-12 rounded-2xl bg-brand-coral/10 flex items-center justify-center text-brand-coral">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-brand-textMain">Realtime Audio Engine</h3>
+                    <p class="text-brand-textMuted text-base leading-relaxed">
+                        Continuous background listening detects snoring episodes instantly, categorizing them into Mild, Medium, and Severe intensity levels.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-brand-surface border border-brand-border p-8 rounded-3xl space-y-5 shadow-soft">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-brand-textMain">Interactive Waveforms</h3>
+                    <p class="text-brand-textMuted text-base leading-relaxed">
+                        Tap any segment on the audio chart to jump straight to exact snore timestamps. Visually inspect waveform amplitude spikes in real time.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-brand-surface border border-brand-border p-8 rounded-3xl space-y-5 shadow-soft">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/10 flex items-center justify-center text-amber-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-brand-textMain">Lifestyle Tracking</h3>
+                    <p class="text-brand-textMuted text-base leading-relaxed">
+                        Correlate alcohol intake, late meals, caffeine, BMI, sleeping positions, or custom health factors directly against snore disruptions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE LIVE APP PREVIEW -->
+    <section id="interactive-demo" class="py-24 px-6 bg-slate-900 border-t border-brand-border">
+        <div class="max-w-7xl mx-auto space-y-12">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-brand-textMain">
+                    Explore the Interface
+                </h2>
+                <p class="text-brand-textMuted text-lg">
+                    Click through the core screens of Snore Episodes as seen in production.
+                </p>
+            </div>
+
+            <!-- Tab Selectors -->
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <button onclick="switchTab('screen-record')" id="tab-screen-record" class="tab-btn px-6 py-3 rounded-full bg-brand-coral text-white font-semibold text-sm transition-all shadow-glow">
+                    1. Snore Engine
+                </button>
+                <button onclick="switchTab('screen-factors')" id="tab-screen-factors" class="tab-btn px-6 py-3 rounded-full bg-brand-surface border border-brand-border text-brand-textMuted hover:text-white font-semibold text-sm transition-all">
+                    2. Lifestyle Factors
+                </button>
+                <button onclick="switchTab('screen-analysis')" id="tab-screen-analysis" class="tab-btn px-6 py-3 rounded-full bg-brand-surface border border-brand-border text-brand-textMuted hover:text-white font-semibold text-sm transition-all">
+                    3. Session Analysis
+                </button>
+                <button onclick="switchTab('screen-report')" id="tab-screen-report" class="tab-btn px-6 py-3 rounded-full bg-brand-surface border border-brand-border text-brand-textMuted hover:text-white font-semibold text-sm transition-all">
+                    4. Reports & Calendar
+                </button>
+            </div>
+
+            <!-- Interactive Screen Display Box -->
+            <div class="max-w-4xl mx-auto bg-brand-surface p-8 md:p-12 rounded-3xl border border-brand-border relative min-h-[440px] flex items-center justify-center shadow-soft">
+                
+                <!-- Screen 1: Snore Engine -->
+                <div id="screen-record" class="tab-content w-full space-y-8 animate-fade-in">
+                    <div class="flex justify-between items-center border-b border-brand-border pb-4">
+                        <h4 class="text-xl font-heading font-bold text-brand-textMain">Snore Engine Dashboard</h4>
+                        <span class="text-sm text-[#2ED573] font-mono font-bold uppercase">Status: Ready</span>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-10 items-center">
+                        <div class="space-y-5 text-brand-textMuted text-base">
+                            <p>Clean, distraction-free night recording interface. One-tap execution starts high-frequency audio analysis.</p>
+                            <ul class="space-y-3 font-medium text-slate-300">
+                                <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-brand-coral"></span> Date-range session filtering</li>
+                                <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-brand-coral"></span> Instant WAV playback list</li>
+                                <li class="flex items-center gap-3"><span class="w-2 h-2 rounded-full bg-brand-coral"></span> Quick lifestyle editor access</li>
+                            </ul>
+                        </div>
+                        <div class="bg-[#0C1013] p-8 rounded-2xl border border-brand-border text-center">
+                            <div class="w-20 h-20 mx-auto rounded-full bg-[#2ED573]/10 flex items-center justify-center text-[#2ED573] mb-4">
+                                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/></svg>
+                            </div>
+                            <div class="font-bold text-white text-lg mb-4">ENGINE READY</div>
+                            <button class="w-full py-4 rounded-xl bg-[#2ED573] text-slate-900 font-extrabold text-sm tracking-wide">START ANALYZING</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Screen 2: Lifestyle Factors -->
+                <div id="screen-factors" class="tab-content hidden w-full space-y-8 animate-fade-in">
+                    <div class="flex justify-between items-center border-b border-brand-border pb-4">
+                        <h4 class="text-xl font-heading font-bold text-brand-textMain">Lifestyle & Health Metrics</h4>
+                        <span class="text-sm text-amber-400 font-mono font-bold uppercase">Customizable</span>
+                    </div>
+                    <div class="space-y-6">
+                        <p class="text-brand-textMuted text-base">Select active factors before bedtime or add custom tags to analyze what triggers your snoring spikes.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 rounded-full bg-brand-coral/20 border border-brand-coral text-white text-sm font-medium">Alcohol Intake</span>
+                            <span class="px-4 py-2 rounded-full bg-[#0C1013] border border-brand-border text-brand-textMuted text-sm font-medium">Late Meal</span>
+                            <span class="px-4 py-2 rounded-full bg-brand-coral/20 border border-brand-coral text-white text-sm font-medium">Caffeine Intake</span>
+                            <span class="px-4 py-2 rounded-full bg-[#0C1013] border border-brand-border text-brand-textMuted text-sm font-medium">Intense Exercise</span>
+                            <span class="px-4 py-2 rounded-full bg-[#0C1013] border border-brand-border text-brand-textMuted text-sm font-medium">Sleeping on Back</span>
+                            <span class="px-4 py-2 rounded-full bg-blue-500/20 border border-blue-400 text-blue-300 text-sm font-medium">+ Custom: Asthma</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Screen 3: Session Analysis -->
+                <div id="screen-analysis" class="tab-content hidden w-full space-y-8 animate-fade-in">
+                    <div class="flex justify-between items-center border-b border-brand-border pb-4">
+                        <h4 class="text-xl font-heading font-bold text-brand-textMain">Playback & Waveform Breakdown</h4>
+                        <span class="text-sm text-brand-coral font-mono font-bold uppercase">2 Severe Episodes</span>
+                    </div>
+                    <div class="bg-[#0C1013] p-8 rounded-2xl border border-brand-border space-y-6">
+                        <!-- Amplitude Bar Visualization -->
+                        <div class="h-20 flex items-end justify-between gap-2 px-4">
+                            <div class="w-3 bg-slate-600 h-6 rounded-t"></div>
+                            <div class="w-3 bg-slate-600 h-8 rounded-t"></div>
+                            <div class="w-3 bg-amber-400 h-12 rounded-t"></div>
+                            <div class="w-3 bg-brand-coral h-16 rounded-t shadow-glow"></div>
+                            <div class="w-3 bg-brand-coral h-20 rounded-t shadow-glow"></div>
+                            <div class="w-3 bg-slate-600 h-10 rounded-t"></div>
+                            <div class="w-3 bg-slate-600 h-6 rounded-t"></div>
+                            <div class="w-3 bg-amber-400 h-14 rounded-t"></div>
+                            <div class="w-3 bg-slate-600 h-8 rounded-t"></div>
+                        </div>
+                        <div class="grid grid-cols-4 gap-4 text-center font-mono">
+                            <div class="p-3 rounded-xl bg-brand-surface border border-brand-border">Mild: <span class="text-[#2ED573] font-bold block text-xl">0</span></div>
+                            <div class="p-3 rounded-xl bg-brand-surface border border-brand-border">Med: <span class="text-amber-400 font-bold block text-xl">0</span></div>
+                            <div class="p-3 rounded-xl bg-brand-surface border border-brand-border">Severe: <span class="text-brand-coral font-bold block text-xl">2</span></div>
+                            <div class="p-3 rounded-xl bg-brand-surface border border-brand-border">Total: <span class="text-white font-bold block text-xl">2</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Screen 4: Reports & Calendar -->
+                <div id="screen-report" class="tab-content hidden w-full space-y-8 animate-fade-in">
+                    <div class="flex justify-between items-center border-b border-brand-border pb-4">
+                        <h4 class="text-xl font-heading font-bold text-brand-textMain">Monthly Factor Impact</h4>
+                        <span class="text-sm text-blue-400 font-mono font-bold uppercase">June 2026</span>
+                    </div>
+                    <div class="grid grid-cols-7 gap-3 text-center">
+                        <div class="py-3 bg-brand-coral/10 border border-brand-coral/30 rounded-xl text-white font-bold text-sm">1<br><span class="text-[10px] text-brand-coral block mt-1">23C 16m</span></div>
+                        <div class="py-3 bg-brand-coral/10 border border-brand-coral/30 rounded-xl text-white font-bold text-sm">2<br><span class="text-[10px] text-brand-coral block mt-1">46C 29m</span></div>
+                        <div class="py-3 bg-brand-coral/10 border border-brand-coral/30 rounded-xl text-white font-bold text-sm">3<br><span class="text-[10px] text-brand-coral block mt-1">65C 13m</span></div>
+                        <div class="py-3 bg-brand-coral/10 border border-brand-coral/30 rounded-xl text-white font-bold text-sm">4<br><span class="text-[10px] text-brand-coral block mt-1">46C 29m</span></div>
+                        <div class="py-3 bg-brand-coral/10 border border-brand-coral/30 rounded-xl text-white font-bold text-sm">5<br><span class="text-[10px] text-brand-coral block mt-1">42C 16m</span></div>
+                        <div class="py-3 bg-brand-coral/10 border border-brand-coral/30 rounded-xl text-white font-bold text-sm">6<br><span class="text-[10px] text-brand-coral block mt-1">43C 31m</span></div>
+                        <div class="py-3 bg-brand-coral/10 border border-brand-coral/30 rounded-xl text-white font-bold text-sm">7<br><span class="text-[10px] text-brand-coral block mt-1">47C 23m</span></div>
+                    </div>
+                    <div class="p-5 rounded-xl bg-[#0C1013] border border-brand-border flex items-center justify-between">
+                        <span class="text-white font-semibold">↑ Monthly Impact: Stuffy Nose</span>
+                        <span class="text-brand-coral font-bold font-mono text-lg">+29% Snore Disruption</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRIVACY & CONTROL SECTION -->
+    <section id="privacy" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            
+            <div class="space-y-6">
+                <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-brand-textMain leading-tight">
+                    Your Sleep Data <br>Stays Entirely Yours.
+                </h2>
+                <p class="text-brand-textMuted text-lg leading-relaxed">
+                    Unlike traditional sleep apps that stream raw voice recordings to remote cloud servers, Snore Episodes processes all audio directly on your phone's processor using local SQLite persistence.
+                </p>
+
+                <div class="space-y-4 pt-4">
+                    <div class="flex items-start gap-5 p-5 rounded-2xl bg-brand-surface border border-brand-border shadow-soft">
+                        <div class="w-12 h-12 rounded-xl bg-brand-coral/10 flex items-center justify-center text-brand-coral shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-brand-textMain font-bold text-base">Automated Retention Policy</h4>
+                            <p class="text-brand-textMuted text-sm mt-1">Configure auto-cleanup rules: keep records for 7 days, 15 days, 30 days, or indefinitely.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-5 p-5 rounded-2xl bg-brand-surface border border-brand-border shadow-soft">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-brand-textMain font-bold text-base">Recording Duration Safeguards</h4>
+                            <p class="text-brand-textMuted text-sm mt-1">Set maximum recording limits (1 to 23 hours) to prevent battery drain or excessive disk usage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-brand-surface p-10 rounded-3xl border border-brand-border space-y-6 shadow-soft">
+                <h3 class="text-xl font-heading font-bold text-brand-textMain border-b border-brand-border pb-4">Data Retention Settings</h3>
+                <div class="space-y-4 text-sm font-medium">
+                    <label class="flex items-center justify-between p-4 rounded-xl bg-[#0C1013] border border-brand-border cursor-pointer">
+                        <span class="text-slate-300">Keep only last 7 days records</span>
+                        <input type="radio" name="retention" class="accent-brand-coral w-4 h-4">
+                    </label>
+                    <label class="flex items-center justify-between p-4 rounded-xl bg-[#0C1013] border border-brand-border cursor-pointer">
+                        <span class="text-slate-300">Keep only last 15 days records</span>
+                        <input type="radio" name="retention" class="accent-brand-coral w-4 h-4">
+                    </label>
+                    <label class="flex items-center justify-between p-4 rounded-xl bg-[#0C1013] border border-brand-border cursor-pointer">
+                        <span class="text-slate-300">Keep only last 30 days records</span>
+                        <input type="radio" name="retention" class="accent-brand-coral w-4 h-4">
+                    </label>
+                    <label class="flex items-center justify-between p-4 rounded-xl bg-[#0C1013] border border-brand-coral cursor-pointer shadow-glow">
+                        <span class="text-white font-bold">Keep All (Default)</span>
+                        <input type="radio" name="retention" checked class="accent-brand-coral w-4 h-4">
+                    </label>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-24 px-6 border-t border-brand-border">
+        <div class="max-w-4xl mx-auto space-y-12">
+            <div class="text-center space-y-4">
+                <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-brand-textMain">Frequently Asked Questions</h2>
+                <p class="text-brand-textMuted text-lg">Everything you need to know about Snore Episodes.</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-brand-surface rounded-2xl overflow-hidden border border-brand-border">
+                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left flex justify-between items-center font-bold text-brand-textMain text-lg">
+                        Is my sleep audio sent to any external server?
+                        <span class="text-brand-coral text-2xl font-light">+</span>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-6 text-base text-brand-textMuted leading-relaxed">
+                        No. Snore Episodes processes audio entirely on-device using custom DSP and TensorFlow Lite machine learning models. Your WAV audio files and analytical reports remain strictly on your phone's local storage.
+                    </div>
+                </div>
+
+                <div class="bg-brand-surface rounded-2xl overflow-hidden border border-brand-border">
+                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left flex justify-between items-center font-bold text-brand-textMain text-lg">
+                        Does the recording work when the phone screen is turned off?
+                        <span class="text-brand-coral text-2xl font-light">+</span>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-6 text-base text-brand-textMuted leading-relaxed">
+                        Yes. Snore Episodes runs as a high-priority foreground service with an active notification indicator, ensuring uninterrupted audio capture throughout your sleep cycle even when the screen is locked.
+                    </div>
+                </div>
+
+                <div class="bg-brand-surface rounded-2xl overflow-hidden border border-brand-border">
+                    <button onclick="toggleFaq(this)" class="w-full p-6 text-left flex justify-between items-center font-bold text-brand-textMain text-lg">
+                        How does the app calculate Lifestyle Factor impact?
+                        <span class="text-brand-coral text-2xl font-light">+</span>
+                    </button>
+                    <div class="faq-answer hidden px-6 pb-6 text-base text-brand-textMuted leading-relaxed">
+                        By logging standard or custom factors (such as Late Meal, Caffeine, or Sleeping on Back), the app correlates factor occurrences against your daily snore count and duration to present a percentage impact score.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / CTA SECTION -->
+    <footer id="download" class="py-20 px-6 border-t border-brand-border bg-[#0C1013]">
+        <div class="max-w-7xl mx-auto space-y-16">
+            
+            <div class="bg-brand-surface border border-brand-border p-12 md:p-16 rounded-[40px] text-center space-y-8 shadow-soft">
+                <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-brand-textMain">
+                    Start Tracking Your Sleep Tonight
+                </h2>
+                <p class="text-brand-textMuted text-lg max-w-2xl mx-auto">
+                    Download Snore Episodes now on Android or iOS and unlock actionable insights into your night.
+                </p>
+
+                <div class="flex flex-wrap items-center justify-center gap-5 pt-4">
+                    <a href="#" class="px-8 py-4 rounded-xl bg-brand-coral hover:bg-brand-coralHover text-white font-bold text-sm shadow-glow transition-all transform hover:-translate-y-1">
+                        Download for Android
+                    </a>
+                    <a href="#" class="px-8 py-4 rounded-xl bg-[#0C1013] border border-brand-border hover:bg-slate-800 text-white font-bold text-sm transition-all transform hover:-translate-y-1">
+                        Download for iOS
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-brand-textMuted pt-8 border-t border-brand-border">
+                <div>
+                    &copy; 2026 Snore Episodes. Built with Flutter. All rights reserved.
+                </div>
+                <div class="flex items-center gap-8 font-medium">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FOR INTERACTIVITY & ANIMATIONS -->
+    <script>
+        // Tab switching logic for interactive demo section
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.add('hidden');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-coral', 'text-white', 'shadow-glow', 'border-transparent');
+                btn.classList.add('bg-brand-surface', 'border-brand-border', 'text-brand-textMuted');
+            });
+
+            document.getElementById(tabId).classList.remove('hidden');
+            const activeBtn = document.getElementById('tab-' + tabId);
+            activeBtn.classList.add('bg-brand-coral', 'text-white', 'shadow-glow', 'border-transparent');
+            activeBtn.classList.remove('bg-brand-surface', 'border-brand-border', 'text-brand-textMuted');
+        }
+
+        // Accordion toggle logic
+        function toggleFaq(button) {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('span');
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.textContent = '-';
+            } else {
+                answer.classList.add('hidden');
+                icon.textContent = '+';
+            }
+        }
+
+        // Live Audio Waveform Canvas Animation
+        const canvas = document.getElementById('heroWaveformCanvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let offset = 0;
+
+            function drawWaveform() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const width = canvas.width;
+                const height = canvas.height;
+                const barWidth = 4;
+                const barGap = 2;
+                const totalBars = Math.floor(width / (barWidth + barGap));
+
+                for (let i = 0; i < totalBars; i++) {
+                    const x = i * (barWidth + barGap);
+                    const noise = Math.sin(i * 0.2 + offset) * Math.cos(i * 0.1 + offset);
+                    const barHeight = Math.max(4, Math.abs(noise) * height * 0.8);
+                    
+                    // Color based on amplitude
+                    if (barHeight > height * 0.5) {
+                        ctx.fillStyle = '#FF4757'; // Severe (Coral)
+                    } else if (barHeight > height * 0.3) {
+                        ctx.fillStyle = '#fbbf24'; // Medium (Amber)
+                    } else {
+                        ctx.fillStyle = '#334155'; // Background ambient
+                    }
+
+                    ctx.beginPath();
+                    ctx.roundRect(x, (height - barHeight) / 2, barWidth, barHeight, 2);
+                    ctx.fill();
+                }
+
+                offset += 0.08;
+                requestAnimationFrame(drawWaveform);
+            }
+
+            drawWaveform();
+        }
+    </script>
+</body>
+</html>
