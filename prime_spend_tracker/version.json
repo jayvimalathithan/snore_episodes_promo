@@ -1,0 +1,7 @@
+{
+  "min_version_android": "1.0.0",
+  "min_version_ios": "1.0.0",
+  "store_url_android": "https://play.google.com/store/apps/details?id=com.primevector.primespendtracker",
+  "store_url_ios": "https://apps.apple.com/app/id000000000",
+  "force_update_free_users_only": true
+}
